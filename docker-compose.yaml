@@ -14,8 +14,12 @@ services:
     environment:
       - MYSQL_ROOT_PASSWORD=mscpad*rgby
       - MYSQL_DATABASE=professor
+    ports:
+      - 3306:3306 # debug
 
   frontend:
     build: ./frontend
+    depends_on:
+      - backend
     ports:
       - 80:80
