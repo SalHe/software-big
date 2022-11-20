@@ -22,8 +22,8 @@ DROP TABLE IF EXISTS xclass;
 CREATE TABLE xclass(
 	class_id BIGINT AUTO_INCREMENT PRIMARY KEY,
 	owner BIGINT NOT NULL,
-	class_name VARCHAR(128) NOT NULL,
-	other_score_weight DECIMAL(3, 2) NOT NULL
+	class_name VARCHAR(128) NOT NULL
+	-- other_score_weight DECIMAL(3, 2) NOT NULL
 )ENGINE = InnoDB DEFAULT CHARSET = UTF8;
 -- 用户-班级联系
 DROP TABLE IF EXISTS student_class_rel;
