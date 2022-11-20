@@ -197,9 +197,10 @@ export default {
       this.createProblemSet = !this.createProblemSet;
     },
     addProblemToSet(problemId) {
-      var obj = {
-        problemId: problemId
-      };
+      // var obj = {
+      //   problemId: problemId
+      // };
+      let obj = problemId; // 后端需要的是 id 数组，这里给的是个object，代码对不上啊
       this.problemSet.push(obj);
     },
     deleteProblemFromList(index) {

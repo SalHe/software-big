@@ -78,13 +78,13 @@ export const GetAnsPic = (str) => request.get('/answer/graphic/' + str);
 // 获取全班答题卡
 export const PostAnsList = (p) => request.post('/answer/list', p);
 
-// // 获取词云
-// export const GetCloudPic = (str) => request.get('/answer/cloud/'+str, {
-//     responseType: 'blob'
-// });
+// 获取词云
+export const GetCloudPic = (str) => request.get('/answer/cloud/'+str, {
+    responseType: 'blob'
+});
 
-// // 获取情感分布
-// export const PostEmotion = (p) => request.post('/answer/emotion',p);
+// 获取情感分布
+export const PostEmotion = (p) => request.post('/answer/emotion',p);
 
 // 获取单选频率分布
 export const PostChoice = (p)=> request.post('/answer/choice',p);
