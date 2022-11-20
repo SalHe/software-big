@@ -3,7 +3,7 @@ package org.zrnq.exam.config
 import com.alibaba.fastjson.JSON
 import com.alibaba.fastjson.JSONException
 import com.alibaba.fastjson.JSONObject
-import jdk.nashorn.internal.runtime.ParserException
+// import jdk.nashorn.internal.runtime.ParserException
 import org.springframework.core.MethodParameter
 import org.springframework.stereotype.Component
 import org.springframework.web.bind.annotation.ValueConstants
@@ -68,7 +68,8 @@ class FastJsonParameterResolver : HandlerMethodArgumentResolver {
                 Date::class.java ->
                     try {
                         dateFormat.parse(json.getString(name))
-                    } catch (e : ParserException) {
+                    // } catch (e : ParserException) {
+                    } catch (e : Exception) {
                         throw RequestException(ResponseCode.ILLEGAL_PARAMETER, "$name[${json.getString(name)}]")
                     }
                 else -> {

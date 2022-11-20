@@ -4,7 +4,7 @@ import axios from 'axios';
 
 // 创建实例
 const instance = axios.create({
-    baseURL:'http://localhost',
+    baseURL:'http://localhost/api',
     // 请求超时
     timeout:800000
 });

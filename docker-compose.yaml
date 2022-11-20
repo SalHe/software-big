@@ -1,0 +1,21 @@
+version: '3'
+
+services:
+  backend:
+    build: ./backend/
+    environment:
+      - spring.profiles.active=prod
+    depends_on:
+      - mysql
+  mysql:
+    image: mysql:8.0
+    volumes:
+      - ./backend/init.sql:/docker-entrypoint-initdb.d/init.sql:ro
+    environment:
+      - MYSQL_ROOT_PASSWORD=mscpad*rgby
+      - MYSQL_DATABASE=professor
+
+  frontend:
+    build: ./frontend
+    ports:
+      - 80:80
