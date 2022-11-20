@@ -1,0 +1,27 @@
+spring:
+  servlet:
+    multipart:
+      max-file-size: 3MB
+      max-request-size: 3MB
+  application:
+    name: "ExamManager"
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/professor?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC
+    username: root
+    password: mscpad*rgby
+
+mybatis-plus:
+  type-enums-package: org.zrnq.exam.entity
+  configuration:
+    default-enum-type-handler: org.apache.ibatis.type.EnumOrdinalTypeHandler
+
+python:
+  path: "D:\\Program Files\\Python\\python.exe"
+
+server:
+  port: 80
+
+#logging:
+#  level:
+#    org.zrnq.exam.mapper: debug

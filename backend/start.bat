@@ -1,0 +1,1 @@
+"D:\Program Files\JDK8\bin\java.exe" -jar build\libs\ExamManager-1.0.0.jar
