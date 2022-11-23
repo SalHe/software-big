@@ -15,26 +15,20 @@
       所有评教
     </el-divider>
     <div id="examInfoBox">
-      <el-table
-        :data="exams"
-        style="width: 100%; border-radius: 25px"
-        border
-        stripe
-        height="243"
-      >
+      <el-table :data="exams" style="width: 100%; border-radius: 25px" border stripe height="243">
         <el-table-column prop="className" label="课程名" width=".25">
         </el-table-column>
         <el-table-column prop="startTime" label="开始时间" width=".25">
         </el-table-column>
         <el-table-column prop="endTime" label="结束时间" width=".25">
         </el-table-column>
-        <el-table-column prop="problemSetName" label="考试名称" width=".25">
+        <el-table-column prop="problemSetName" label="评教名称" width=".25">
         </el-table-column>
         <el-table-column prop="time" label="" width=".25">
           <template slot-scope="scope">
-            <el-button type="success" @click="enterExam(scope.$index)"
-              >进入评教</el-button
-            >
+            <el-button type="success" @click="enterExam(scope.$index)">
+              进入评教
+            </el-button>
           </template>
         </el-table-column>
       </el-table>
@@ -43,13 +37,7 @@
       班级列表
     </el-divider>
     <div id="studentClassInfoBox">
-      <el-table
-        :data="classes"
-        style="width: 100%; border-radius: 25px"
-        border
-        stripe
-        height="200"
-      >
+      <el-table :data="classes" style="width: 100%; border-radius: 25px" border stripe height="200">
         <el-table-column prop="classId" label="课程号" width=".33">
         </el-table-column>
         <el-table-column prop="className" label="课程名" width=".33">
@@ -116,8 +104,9 @@ export default {
 <style>
 #homeRoot {
   position: relative;
-    height: 753px;
+  height: 753px;
 }
+
 #userInfoBox {
   user-select: none;
   position: absolute;
@@ -129,24 +118,29 @@ export default {
   background-color: white;
   border-radius: 25px;
 }
+
 .userInfo {
   position: absolute;
 }
+
 #userDescription {
   position: absolute;
   left: 120px;
   width: 600px;
 }
+
 #userAvatar {
   position: absolute;
   left: 12px;
   top: 5px;
 }
+
 #userDescription {
   position: absolute;
   left: 114px;
   top: 15px;
 }
+
 #examInfoBox {
   user-select: none;
   position: absolute;
@@ -157,22 +151,26 @@ export default {
   background-color: white;
   border-radius: 25px;
 }
+
 .examInfoItem {
   font-size: 20px;
   margin-left: 40px;
   margin-top: 10px;
   color: grey;
 }
+
 #studentExamDiv {
   margin-left: 5%;
   top: 145px;
   width: 95%;
 }
+
 #studentClassDiv {
   margin-left: 5%;
   top: 420px;
   width: 95%;
 }
+
 #studentClassInfoBox {
   user-select: none;
   position: absolute;
@@ -183,6 +181,7 @@ export default {
   background-color: white;
   border-radius: 25px;
 }
+
 #faceOuter {
   height: 600px;
 }

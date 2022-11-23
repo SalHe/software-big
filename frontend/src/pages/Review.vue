@@ -260,6 +260,8 @@ export default {
     },
   },
   mounted() {
+    this.classNmae = this.$route.params.className;
+    this.problemSetName = this.$route.params.problemSetName;
     // 获取试卷
     PostExamContent({
       problemSetId: this.$route.params.problemSetId,

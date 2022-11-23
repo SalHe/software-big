@@ -2,59 +2,29 @@
   <div id="questionBankRoot">
     <div id="questionBox">
       <div id="questionHeader">
-        <el-page-header
-          @back="goBack"
-          content="题库管理"
-          id="questionPageHeader"
-        >
+        <el-page-header @back="goBack" content="题库管理" id="questionPageHeader">
         </el-page-header>
-        <el-button
-          size="small"
-          type="primary"
-          id="createPaperBtn"
-          @click="switchProblemSet"
-        >
+        <el-button size="small" type="primary" id="createPaperBtn" @click="switchProblemSet">
           组卷
         </el-button>
-        <el-input
-          placeholder="请输入关键词"
-          prefix-icon="el-icon-search"
-          v-model="seacherWord"
-          style="width: 200px; position: absolute; left: 70%; top: 10px"
-        >
+        <el-input placeholder="请输入关键词" prefix-icon="el-icon-search" v-model="seacherWord"
+          style="width: 200px; position: absolute; left: 70%; top: 10px">
         </el-input>
-        <el-button
-          size="small"
-          type="primary"
-          id="searchPaperBtn"
-          style="position: absolute; left: 85%; top: 15px"
-          @click="searchQuestion"
-        >
+        <el-button size="small" type="primary" id="searchPaperBtn" style="position: absolute; left: 85%; top: 15px"
+          @click="searchQuestion">
           搜索
         </el-button>
-        <el-button
-          size="small"
-          type="success"
-          id="searchPaperBtn"
-          style="position: absolute; left: 89.5%; top: 15px"
-          @click="goToProblem"
-        >
+        <el-button size="small" type="success" id="searchPaperBtn" style="position: absolute; left: 89.5%; top: 15px"
+          @click="goToProblem">
           添加
         </el-button>
       </div>
       <el-divider id="questionDivider">所有题目</el-divider>
       <div id="questionBankBox">
         <el-form>
-          <el-form-item
-            v-for="item in questionPage"
-            :key="item.problemId"
-            :label="item.problemId + '.'"
-            class="questionBankItem"
-          >
-            <el-image
-              :src="imgSrc[item.problemId]"
-              style="width: 40%"
-            ></el-image>
+          <el-form-item v-for="item in questionPage" :key="item.problemId" :label="item.problemId + '.'"
+            class="questionBankItem">
+            <el-image :src="imgSrc[item.problemId]" style="width: 40%"></el-image>
             <br /><br />
             <el-radio-group v-if="item.type == '单选题'">
               <el-radio v-for="n in item.total" :key="n" :label="n" disabled>
@@ -64,10 +34,7 @@
             <el-form-item v-if="item.type == '填空题'"> </el-form-item>
             <div v-if="createProblemSet">
               <br />
-              <el-button
-                type="warning"
-                @click="addProblemToSet(item.problemId)"
-              >
+              <el-button type="warning" @click="addProblemToSet(item.problemId)">
                 添加该题
               </el-button>
             </div>
@@ -76,36 +43,18 @@
         </el-form>
       </div>
       <div id="questionPagination">
-        <el-pagination
-          @current-change="handleCurrentChange"
-          :current-page.sync="currentPage"
-          :page-size="20"
-          layout="total, prev, pager, next"
-          :total="questionTotalNum"
-          :hide-on-single-page="true"
-          background
-        >
+        <el-pagination @current-change="handleCurrentChange" :current-page.sync="currentPage" :page-size="20"
+          layout="total, prev, pager, next" :total="questionTotalNum" :hide-on-single-page="true" background>
         </el-pagination>
       </div>
-      <el-drawer
-        title="新的评教"
-        :visible.sync="drawerShow"
-        direction="rtl"
-        size="50%"
-      >
+      <el-drawer title="新的评教" :visible.sync="drawerShow" direction="rtl" size="50%">
         <el-form>
           <el-form-item>
-            <el-input
-              v-model="problemSetName"
-              placeholder="请输入评教名称"
-            ></el-input>
+            <el-input v-model="problemSetName" placeholder="请输入评教名称"></el-input>
           </el-form-item>
         </el-form>
         <el-table :data="problemSet" height="600">
-          <el-table-column
-            property="problemId"
-            label="题目号"
-          ></el-table-column>
+          <el-table-column property="problemId" label="题目号"></el-table-column>
           <!-- <el-table-column label="分值">
             <template slot-scope="scope">
               <el-input-number
@@ -117,31 +66,18 @@
           </el-table-column> -->
           <el-table-column>
             <template slot-scope="scope">
-              <el-button
-                type="danger"
-                @click="deleteProblemFromList(scope.$index)"
-                size="small"
-                style="float: right"
-              >
+              <el-button type="danger" @click="deleteProblemFromList(scope.$index)" size="small" style="float: right">
                 删除该题
               </el-button>
             </template>
           </el-table-column>
         </el-table>
-        <el-button
-          type="primary"
-          @click="subProblemSet"
-          style="float: right; margin: 10px"
-        >
+        <el-button type="primary" @click="subProblemSet" style="float: right; margin: 10px">
           完成
         </el-button>
       </el-drawer>
     </div>
-    <div
-      id="setDrawerTag"
-      v-if="createProblemSet"
-      @click="drawerShow = !drawerShow"
-    >
+    <div id="setDrawerTag" v-if="createProblemSet" @click="drawerShow = !drawerShow">
       &nbsp;&nbsp;点击打开待整合评教题目列表
     </div>
   </div>
@@ -167,6 +103,7 @@ export default {
       problemSetName: "",
       questionPage: [],
       problemSet: [],
+      problemList: [],
       imgSrc: [],
       comments: ["优秀", "良好", "及格", "不合格"],
     };
@@ -197,14 +134,17 @@ export default {
       this.createProblemSet = !this.createProblemSet;
     },
     addProblemToSet(problemId) {
-      // var obj = {
-      //   problemId: problemId
-      // };
-      let obj = problemId; // 后端需要的是 id 数组，这里给的是个object，代码对不上啊
+      var obj = {
+        problemId: problemId
+      };
       this.problemSet.push(obj);
+      this.problemList.push(problemId);
+      console.log(this.problemSet);
+      console.log(this.problemList);
     },
     deleteProblemFromList(index) {
       this.problemSet.splice(index, 1);
+      this.problemList.splice(index, 1);
     },
     subProblemSet() {
       if (this.problemSet.length == 0 || this.problemSetName == "") {
@@ -219,7 +159,7 @@ export default {
           console.log(problemSetId);
           PutProblemSet({
             problemSetId,
-            problemList: this.problemSet,
+            problemList: this.problemList,
           }).then((res) => {
             this.$router.go(0);
             console.log(res);
@@ -251,6 +191,7 @@ export default {
 #questionBankRoot {
   position: relative;
 }
+
 #questionBox {
   position: absolute;
   border: 1px solid grey;
@@ -259,33 +200,41 @@ export default {
   top: 50px;
   user-select: none;
 }
+
 #questionHeader {
   position: relative;
   width: 100%;
   height: 50px;
 }
+
 #questionPageHeader {
   position: absolute;
   left: 10px;
   top: 20px;
 }
+
 #questionList {
   width: 100%;
   height: 300px;
 }
+
 #questionPagination {
   position: relative;
 }
+
 .el-pagination {
   text-align: center;
 }
+
 .questionBankItem {
   margin-left: 15px;
 }
+
 #createPaperBtn {
   margin-left: 95%;
   margin-top: 15px;
 }
+
 #setDrawerTag {
   writing-mode: vertical-lr;
   width: 22px;
@@ -298,6 +247,7 @@ export default {
   margin-top: 15px;
   border-radius: 10px;
 }
+
 #setDrawerTag:hover {
   color: rgb(112, 169, 255);
   border: 2px solid rgb(190, 216, 255);

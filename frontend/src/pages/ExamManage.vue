@@ -133,6 +133,8 @@ export default {
         params: {
           problemSetId: this.exams[index].problemSetId,
           classId: this.exams[index].classId,
+          className: this.exams[index].className,
+          problemSetName: this.exams[index].problemSetName
         },
       });
     },

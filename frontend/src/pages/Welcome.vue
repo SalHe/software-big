@@ -3,7 +3,7 @@
     <div id="welcomeWord">
       This system is done for students to comment on teachers.<br />
       <br /><br /><br />
-      BKJ 2019302040026 2022 05 12<br />
+      <br />
     </div>
   </div>
 </template>
